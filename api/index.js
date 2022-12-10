@@ -10,8 +10,13 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 // Set static folder
-app.use(express.static(path.join(__dirname, 'public')));
+// app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/openai', require('./routes/openaiRoutes'))
+app.use('/api/openai', require('./routes/openaiRoutes'))
+app.get('/api/openai',(req, res) => {
+    res.send({ success: true})
+})
 
 app.listen(port, () => console.log(`Server started on port ${port}`));
+
+module.exports = app;
